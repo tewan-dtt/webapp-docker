@@ -1,5 +1,8 @@
 pipeline{
 	agent any
+	environment{
+		dockerImage = ''	
+	}
 	tools{
 		maven 'Maven'
 	}
@@ -34,23 +37,29 @@ pipeline{
        			}
     		}
 		
-		stage ('Container Baking'){
-			environment {
-				registry = "wanhyterr/webapp"
-				registryCredential = 'docker-hub'
-			}
+		stage ('Container Image Baking'){
 			steps{
 				script{
-					def webapp = docker.build("webapp")
-					webapp.push('latest')
+					dockerImage = docker.build("webapp")
 				}
 			}
 		}
 		
-		stage ('Deployment to Staging'){
+		stage ('Container Image Upload'){
 			steps{
-				sshagent(['tomcat']){
-					sh 'scp -o StrictHostKeyChecking=no target/*.war ec2-user@tomcat:/usr/share/tomcat/webapps/webapps.war'
+				script{
+					docker.withRegistry('wanhyterr/webapp','docker-hub')
+					dockerImage.push('latest')
+				}
+			}
+		}
+		
+		stage ('Container Image Run'){
+			steps{
+				script{
+					sh 'docker ps -f name=webapp -q | xargs --no-run-if-empty docker container stop'
+					sh 'docker container ls -a -fname=webapp -q | xargs -r docker container rm'
+					dockerImage.run("-p 8888:8080 --rm -name webapp")
 				}
 			}
 		}
@@ -58,6 +67,14 @@ pipeline{
 		stage ('Fortify WebInspect (DAST)'){
 			steps {
 				sh 'pwsh /opt/webinspect_script/webinspect-webapps.ps1'
+			}
+		}
+		
+		stage ('WAR Artifact Transfer'){
+			steps{
+				sshagent(['tomcat']){
+					sh 'scp -o StrictHostKeyChecking=no target/*.war ec2-user@tomcat:/usr/share/tomcat/webapps/webapps.war'
+				}
 			}
 		}
 	}
