@@ -46,5 +46,11 @@ pipeline{
 				}
 			}
 		}
+		
+		stage ('Fortify WebInspect (DAST)'){
+			steps {
+				sh 'pwsh /opt/webinspect_script/webinspect-webapps.ps1'
+			}
+		}
 	}
 }
