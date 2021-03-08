@@ -35,7 +35,6 @@ pipeline{
     		}
 		
 		stage ('Container Baking'){
-			agent { dockerfile true}
 			environment {
 				registry = "wanhyterr/webapp"
 				registryCredential = 'docker-hub'
