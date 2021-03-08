@@ -36,7 +36,7 @@ pipeline{
 		
 		stage ('Container Baking'){
 			steps{
-				sh 'docker build -t mywebapp ./src/main
+				sh 'docker build -t mywebapp ./src/main/'
 				sh 'docker run --rm -it -p 8888:8080 mywebapp'
 			}
 		}
