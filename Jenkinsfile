@@ -1,5 +1,13 @@
 pipeline{
-	agent { dockerfile true }
+	agent { 
+		dockerfile{
+			dir 'src/main/'
+		}
+	}
+	environment {
+		registry = "wanhyterr/webapp
+		registryCredential = 'docker-hub'
+	}
 	tools{
 		maven 'Maven'
 	}
@@ -36,9 +44,8 @@ pipeline{
 		
 		stage ('Container Baking'){
 			steps{
-				sh 'cd src/main/'
-				sh 'docker build -t mywebapp .'
-				sh 'docker run --rm -it -p 8888:8080 mywebapp'
+				def webapp = docker.build("webapp","./src/main")
+				webapp.push('latest')
 			}
 		}
 		
