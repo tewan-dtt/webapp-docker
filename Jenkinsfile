@@ -13,7 +13,14 @@ pipeline{
       			}
 		}
 		
-    
+    		stage ('Secret Check') {
+      			steps {
+        			sh 'rm trufflehog || true'
+        			sh 'docker run gesellix/trufflehog --json https://github.com/tewan-dtt/webapp.git  > trufflehog'
+        			sh 'cat trufflehog'
+      			}
+    		}
+		
 		stage('Fortify Remote Analysis (SAST)') {
       			steps {
         			fortifyRemoteArguments transOptions: '-Xmx2G'
@@ -28,7 +35,7 @@ pipeline{
     		}
 		
 		stage ('Container Baking'){
-			agent { dockerfile true}
+			agent { dockerfile '/src/main/'}
 			environment {
 				registry = "wanhyterr/webapp"
 				registryCredential = 'docker-hub'
