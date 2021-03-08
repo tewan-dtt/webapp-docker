@@ -47,8 +47,8 @@ pipeline{
 		
 		stage ('Container Image Upload'){
 			steps{
+				docker.withRegistry('wanhyterr/webapp','docker-hub')
 				script{
-					docker.withRegistry('wanhyterr/webapp','docker-hub')
 					dockerImage.push('latest')
 				}
 			}
@@ -56,9 +56,9 @@ pipeline{
 		
 		stage ('Container Image Run'){
 			steps{
+				sh 'docker ps -f name=webapp -q | xargs --no-run-if-empty docker container stop'
+				sh 'docker container ls -a -fname=webapp -q | xargs -r docker container rm'
 				script{
-					sh 'docker ps -f name=webapp -q | xargs --no-run-if-empty docker container stop'
-					sh 'docker container ls -a -fname=webapp -q | xargs -r docker container rm'
 					dockerImage.run("-p 8888:8080 --rm -name webapp")
 				}
 			}
