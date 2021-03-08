@@ -1,9 +1,5 @@
 pipeline{
-	agent { 
-		dockerfile{
-			dir 'src/main/'
-		}
-	}
+	agent any
 	environment {
 		registry = "wanhyterr/webapp"
 		registryCredential = 'docker-hub'
@@ -36,6 +32,7 @@ pipeline{
     		}
 		
 		stage ('Container Baking'){
+			agent { dockerfile true}
 			steps{
 				script{
 					def webapp = docker.build("webapp","./src/main")
