@@ -1,5 +1,5 @@
 pipeline{
-	agent any
+	agent { dockerfile true }
 	tools{
 		maven 'Maven'
 	}
@@ -38,6 +38,13 @@ pipeline{
       				sh 'mvn clean package'
        			}
     		}
+		
+		stage ('Container Baking'){
+			steps{
+				def webapp = docker.build("webapp","./src/main")
+				webapp.push('latest')
+			}
+		}
 		
 		stage ('Deploy-To-Tomcat'){
 			steps{
