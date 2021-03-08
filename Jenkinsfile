@@ -45,12 +45,28 @@ pipeline{
 			}
 		}
 		
+		stage('Prisma Cloud Scan') {
+            		steps {
+				// Scan the image
+				prismaCloudScanImage ca: '',
+				cert: '',
+				dockerAddress: 'unix:///var/run/docker.sock',
+				image: 'webapp*',
+				key: '',
+				logLevel: 'info',
+				podmanPath: '',
+				project: '',
+				resultsFile: 'prisma-cloud-scan-results.json',
+				ignoreImageBuildTime:true
+            		}
+        	}
+		
 		stage ('Container Image Run'){
 			steps{
 				sh 'docker ps -f name=webapp -q | xargs --no-run-if-empty docker container stop'
 				sh 'docker container ls -a -fname=webapp -q | xargs -r docker container rm'
 				script{
-					dockerImage.run("-p 8888:8080 --rm -name webapp")
+					dockerImage.run("-p 8888:8080 --rm --name webapp")
 				}
 			}
 		}
