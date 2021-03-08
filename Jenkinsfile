@@ -5,7 +5,7 @@ pipeline{
 		}
 	}
 	environment {
-		registry = "wanhyterr/webapp
+		registry = "wanhyterr/webapp"
 		registryCredential = 'docker-hub'
 	}
 	tools{
