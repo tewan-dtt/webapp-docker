@@ -36,8 +36,8 @@ pipeline{
 		
 		stage ('Container Baking'){
 			steps{
-				def webapp = docker.build("webapp","./src/main")
-				webapp.push('latest')
+				sh 'docker build -t mywebapp ./src/main
+				sh 'docker run --rm -it -p 8888:8080 mywebapp'
 			}
 		}
 		
