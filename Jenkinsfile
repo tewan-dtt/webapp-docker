@@ -78,7 +78,7 @@ pipeline{
 		}
 		
 		stage ('Approval to Prod'){
-			input "Are you sure to deploy the new release into production? Please ensure the new release doesn't contain any severe vulnerabilities."	
+			input "Are you sure to deploy the new release into production? Please ensure the new release does not contain any severe vulnerabilities."	
 		}
 		
 		stage ('WAR Artifact Transfer'){
