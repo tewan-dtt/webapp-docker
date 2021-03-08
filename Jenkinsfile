@@ -44,8 +44,10 @@ pipeline{
 		
 		stage ('Container Baking'){
 			steps{
-				def webapp = docker.build("webapp","./src/main")
-				webapp.push('latest')
+				script{
+					def webapp = docker.build("webapp","./src/main")
+					webapp.push('latest')
+				}
 			}
 		}
 		
