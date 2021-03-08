@@ -20,7 +20,19 @@ pipeline{
         			sh 'cat trufflehog'
       			}
     		}
-
+		
+		stage('Fortify Remote Arguments') {
+      			steps {
+        			fortifyRemoteArguments transOptions: '-Xmx2G'
+      			} 
+    		} 
+    
+		stage('Fortify Remote Analysis') {
+      			steps {
+        			fortifyRemoteAnalysis remoteAnalysisProjectType: fortifyMaven(), uploadSSC: [appName: 'Jenkins-poc', appVersion: '1']
+      			}
+    		}
+		
 		stage ('Build') {
       			steps {
       				sh 'mvn clean package'
