@@ -21,13 +21,6 @@ pipeline{
       			}
 		}
 		
-		stage ('Secret Check') {
-      			steps {
-        			sh 'rm trufflehog || true'
-        			sh 'docker run gesellix/trufflehog --json https://github.com/tewan-dtt/webapp.git  > trufflehog'
-        			sh 'cat trufflehog'
-      			}
-    		}
     
 		stage('Fortify Remote Analysis (SAST)') {
       			steps {
