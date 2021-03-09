@@ -58,7 +58,7 @@ pipeline{
 			}
 		}
 		
-		stage('Prisma Cloud Scan') {
+		stage('Prisma Cloud Scan (Container Vuln Scan)') {
             		steps {
 				// Scan the image
 				prismaCloudScanImage ca: '',
@@ -78,6 +78,7 @@ pipeline{
 			steps{
 				sh 'docker ps -f name=webapp -q | xargs --no-run-if-empty docker container stop'
 				sh 'docker container ls -a -fname=webapp -q | xargs -r docker container rm'
+				sh 'docker images wanhyterr/webapp -q | xargs -r docker image rm'
 				script{
 					dockerImage.run("-p 8888:8080 --rm --name webapp")
 				}
@@ -90,11 +91,23 @@ pipeline{
 			}
 		}
 		
-		stage ('Approve to Deploy in Prod'){
+		stage ('Approve to Release'){
 			steps{
 				input "Are you sure to deploy the new release into production? Please ensure the new release does not contain any severe vulnerabilities."
 			}
 		}
 		
+		stage ('Deploy in Production'){
+			steps{
+				sshagent(['tomcat']){
+					sh '''
+						ssh -t ec2-user@tomcat 'docker ps -f name=webapp -q | xargs --no-run-if-empty docker container stop'
+						ssh -t ec2-user@tomcat 'docker container ls -a -fname=webapp -q | xargs -r docker container rm'
+						ssh -t ec2-user@tomcat 'docker images wanhyterr/webapp -q | xargs -r docker image rm'
+						ssh -t ec2-user@tomcat 'docker run -d -p 8888:8080 --rm --name webapp wanhyterr/webapp'
+					'''
+				}
+			}
+		}
 	}
 }
