@@ -40,7 +40,7 @@ pipeline{
 		stage ('Container Image Baking'){
 			steps{
 				script{
-					dockerImage = docker.build("webapp")
+					dockerImage = docker.build("wanhyterr/webapp")
 				}
 			}
 		}
@@ -76,10 +76,10 @@ pipeline{
 		
 		stage ('Deploy in Staging'){
 			steps{
-				sh 'docker ps -f name=webapp -q | xargs --no-run-if-empty docker container stop'
-				sh 'docker container ls -a -fname=webapp -q | xargs -r docker container rm'
+				sh 'docker ps -f name=wanhyterr/webapp -q | xargs --no-run-if-empty docker container stop'
+				sh 'docker container ls -a -fname=wanhyterr/webapp -q | xargs -r docker container rm'
 				script{
-					dockerImage.run("-p 8888:8080 --rm --name webapp")
+					dockerImage.run("-p 8888:8080 --rm --name wanhyterr/webapp")
 				}
 			}
 		}
