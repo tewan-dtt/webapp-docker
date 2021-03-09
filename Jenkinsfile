@@ -64,7 +64,7 @@ pipeline{
 				prismaCloudScanImage ca: '',
 				cert: '',
 				dockerAddress: 'unix:///var/run/docker.sock',
-				image: 'wanyterr/webapp*',
+				image: 'wanhyterr/webapp*',
 				key: '',
 				logLevel: 'info',
 				podmanPath: '',
