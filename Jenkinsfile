@@ -49,7 +49,7 @@ pipeline{
 			environment {registryCredential = 'docker-hub'}
 			steps{
 				script{
-					sh 'cp target/webapps.war /tmp/webapps-${env.BUILD_NUMBER}.war'
+					sh 'cp target/webapps.war /tmp/webapps-${BUILD_NUMBER}.war'
 					docker.withRegistry( '', registryCredential ) {
 						dockerImage.push("$BUILD_NUMBER")
 						dockerImage.push('latest')
