@@ -45,6 +45,19 @@ pipeline{
 			}
 		}
 		
+		stage ('Artifact and Image Upload'){
+			environment {registryCredential = 'docker-hub'}
+			steps{
+				script{
+					sh 'cp target/webapps.war /tmp/webapps-${env.BUILD_NUMBER}.war'
+					docker.withRegistry( '', registryCredential ) {
+						dockerImage.push("$BUILD_NUMBER")
+						dockerImage.push('latest')
+					}
+				}
+			}
+		}
+		
 		stage('Prisma Cloud Scan') {
             		steps {
 				// Scan the image
@@ -61,7 +74,7 @@ pipeline{
             		}
         	}
 		
-		stage ('Container Image Run'){
+		stage ('Deploy in Staging'){
 			steps{
 				sh 'docker ps -f name=webapp -q | xargs --no-run-if-empty docker container stop'
 				sh 'docker container ls -a -fname=webapp -q | xargs -r docker container rm'
@@ -77,18 +90,11 @@ pipeline{
 			}
 		}
 		
-		stage ('Approval to Prod'){
+		stage ('Approve to Deploy in Prod'){
 			steps{
 				input "Are you sure to deploy the new release into production? Please ensure the new release does not contain any severe vulnerabilities."
 			}
 		}
 		
-		stage ('WAR Artifact Transfer'){
-			steps{
-				sshagent(['tomcat']){
-					sh 'scp -o StrictHostKeyChecking=no target/*.war ec2-user@tomcat:/usr/share/tomcat/webapps/webapps.war'
-				}
-			}
-		}
 	}
 }
