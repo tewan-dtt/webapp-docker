@@ -78,7 +78,7 @@ pipeline{
 			steps{
 				sh 'docker ps -f name=webapp -q | xargs --no-run-if-empty docker container stop'
 				sh 'docker container ls -a -fname=webapp -q | xargs -r docker container rm'
-				sh 'docker images wanhyterr/webapp -q | xargs -r docker image rm'
+				sh 'docker images wanhyterr/webapp -q | xargs -r docker image rm -f'
 				script{
 					dockerImage.run("-p 8888:8080 --rm --name webapp")
 				}
@@ -103,7 +103,7 @@ pipeline{
 					sh '''
 						ssh -t ec2-user@tomcat 'docker ps -f name=webapp -q | xargs --no-run-if-empty docker container stop'
 						ssh -t ec2-user@tomcat 'docker container ls -a -fname=webapp -q | xargs -r docker container rm'
-						ssh -t ec2-user@tomcat 'docker images wanhyterr/webapp -q | xargs -r docker image rm'
+						ssh -t ec2-user@tomcat 'docker images wanhyterr/webapp -q | xargs -r docker image rm -f'
 						ssh -t ec2-user@tomcat 'docker run -d -p 8888:8080 --rm --name webapp wanhyterr/webapp'
 					'''
 				}
