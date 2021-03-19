@@ -49,9 +49,10 @@ pipeline{
 			parallel{
 				stage ('Secret Check') {
       				steps {
-	        			sh 'rm trufflehog || true'
-	        			sh 'docker run gesellix/trufflehog --json https://github.com/tewan-dtt/webapp-docker.git  > trufflehog'
-	        			sh 'cat trufflehog'
+	        			sh 'rm trufflehog-result.yaml || true'
+	        			sh 'docker run trufflehog3 -f yaml https://github.com/tewan-dtt/webapp-docker.git > trufflehog-result.yaml'
+					sh 'docker run -v trufflehog-result.yaml:/trufflehog3/result.yaml trufflehog3 -R result.yaml > trufflehog-report.html
+	        			sh 'cat trufflehog-result.yaml'
       				}
     			}
 		
@@ -80,7 +81,7 @@ pipeline{
 
 				stage ('Fortify WebInspect (DAST)'){
 					steps {
-						sh 'pwsh /opt/webinspect_script/webinspect-webapps.ps1'
+						sh 'pwsh /opt/webinspect_script/webinspect-webapps.ps1&'
 					}
 				}
 
@@ -90,7 +91,8 @@ pipeline{
 		stage ('Archive Artifact'){
 			steps{
 				archiveArtifacts 'target/*.war'
-				archiveArtifacts 'trufflehog'
+				archiveArtifacts 'trufflehog-result.yaml'
+				archiveArtifacts 'trufflehog-report.html'
 				archiveArtifacts '*.fpr'
 				archiveArtifacts 'prisma-cloud-scan-results.json'
 			}
