@@ -93,7 +93,6 @@ pipeline{
 				archiveArtifacts 'trufflehog'
 				archiveArtifacts '*.fpr'
 				archiveArtifacts 'prisma-cloud-scan-results.json'
-				}
 			}
 		}
 		
