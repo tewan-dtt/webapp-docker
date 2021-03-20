@@ -95,6 +95,14 @@ pipeline{
 				archiveArtifacts 'trufflehog-report.html'
 				archiveArtifacts '*.fpr'
 				archiveArtifacts 'prisma-cloud-scan-results.json'
+				publishHTML (target: [
+				      allowMissing: false,
+				      alwaysLinkToLastBuild: false,
+				      keepAll: true,
+				      reportDir: '',
+				      reportFiles: 'trufflehog-report.html',
+				      reportName: "Trufflehog Report"
+				    ])
 			}
 		}
 		
