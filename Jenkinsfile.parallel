@@ -59,7 +59,7 @@ pipeline{
 				stage('Fortify Remote Analysis (SAST)') {
 		      			steps {
 		        			fortifyRemoteArguments transOptions: '-Xmx2G'
-							fortifyRemoteAnalysis remoteAnalysisProjectType: fortifyMaven(), uploadSSC: [appName: 'Jenkins-poc', appVersion: '1']
+						fortifyRemoteAnalysis remoteAnalysisProjectType: fortifyMaven(), uploadSSC: [appName: 'Webapp-Demo-Fortify', appVersion: '1']
 		      			}
 		    	}
 
