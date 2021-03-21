@@ -128,7 +128,7 @@ pipeline{
 				}
 			}
 		}
-		
+	}
 		post {
 			/*
 			 * These steps will run at the end of the pipeline based on the condition.
@@ -147,5 +147,4 @@ pipeline{
 			    slackSend channel: "#deloitte-devsecops-poc", message: "${env.JOB_NAME} ${env.BUILD_NUMBER} - Deployed in Production - (<http://10.59.0.190:8888/webapp|Open>)."
 			}
     		}
-	}
 }
