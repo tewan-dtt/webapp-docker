@@ -54,7 +54,7 @@ pipeline{
 	        			sh 'rm trufflehog-result.yaml || true'
 					sh 'rm trufflehog-report.html || true'
 	        			sh 'docker run trufflehog3 -f yaml https://github.com/tewan-dtt/webapp-docker.git > trufflehog-result.yaml || true'
-					sh 'docker run -v trufflehog-result.yaml:/trufflehog3/result.yaml trufflehog3 -R result.yaml > trufflehog-report.html || true'
+					sh 'docker run -v `pwd`/trufflehog-result.yaml:/trufflehog3/truffle-result.yaml trufflehog3 -R /trufflehog3/truffle-result.yaml > trufflehog-report.html || true'
 	        			sh 'cat trufflehog-result.yaml'
       				}
     			}
