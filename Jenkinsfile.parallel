@@ -13,7 +13,7 @@ pipeline{
                     			echo "PATH = ${PATH}"
                     			echo "M2_HOME = ${M2_HOME}"
             			''' 
-				slackSend channel: '#deloitte-devsecops-poc', message: '${env.JOB_NAME} ${env.BUILD_NUMBER} - Jenkins Pipeline Started - (<${env.BUILD_URL}|Open>)'
+				slackSend channel: "#deloitte-devsecops-poc", message: "${env.JOB_NAME} ${env.BUILD_NUMBER} - Jenkins Pipeline Started - (<${env.BUILD_URL}|Open>)"
       			}
 		}
 		
@@ -43,7 +43,7 @@ pipeline{
 				script{
 					dockerImage.run("-p 8888:8080 --rm --name webapp")
 				}
-				slackSend channel: '#deloitte-devsecops-poc', message: '${env.JOB_NAME} ${env.BUILD_NUMBER} - Deployed to Staging - (<${env.BUILD_URL}|Open>)'
+				slackSend channel: "#deloitte-devsecops-poc", message: "${env.JOB_NAME} ${env.BUILD_NUMBER} - Deployed to Staging - (<${env.BUILD_URL}|Open>)"
 			}
 		}
 
@@ -112,7 +112,7 @@ pipeline{
 		stage ('Approve to Release'){
 			steps{
 				input "Are you sure to deploy the new release into production? Please ensure the new release does not contain any severe vulnerabilities."
-				slackSend channel: '#deloitte-devsecops-poc', message: '${env.JOB_NAME} ${env.BUILD_NUMBER} - Ready to proceed in Production - (<${env.BUILD_URL}|Open>). Please kindly review the security testing result then approve in Jenkins.'
+				slackSend channel: "#deloitte-devsecops-poc", message: "${env.JOB_NAME} ${env.BUILD_NUMBER} - Ready to proceed in Production - (<${env.BUILD_URL}|Open>). Please kindly review the security testing result then approve in Jenkins."
 			}
 		}
 		
@@ -125,7 +125,7 @@ pipeline{
 						ssh -t ec2-user@tomcat 'docker images wanhyterr/webapp -q | xargs -r docker image rm -f'
 						ssh -t ec2-user@tomcat 'docker run -d -p 8888:8080 --rm --name webapp wanhyterr/webapp'
 					'''
-					slackSend channel: '#deloitte-devsecops-poc', message: '${JOB_NAME} (${BUILD_NUMBER}) has launched to the Production environment completely.'
+					slackSend channel: "#deloitte-devsecops-poc", message: "${env.JOB_NAME} ${env.BUILD_NUMBER} - Ready to proceed in Production - (<${env.BUILD_URL}|Open>)."
 				}
 			}
 		}
