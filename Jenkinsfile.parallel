@@ -13,7 +13,7 @@ pipeline{
                     			echo "PATH = ${PATH}"
                     			echo "M2_HOME = ${M2_HOME}"
             			''' 
-				slackSend channel: '#deloitte-devsecops-poc', message: '$JOB_NAME ($BUILD_NUMBER) is initiated.'
+				slackSend channel: '#deloitte-devsecops-poc', message: '${JOB_NAME} (${BUILD_NUMBER}) is initiated.'
       			}
 		}
 		
@@ -43,7 +43,7 @@ pipeline{
 				script{
 					dockerImage.run("-p 8888:8080 --rm --name webapp")
 				}
-				slackSend channel: '#deloitte-devsecops-poc', message: '$JOB_NAME ($BUILD_NUMBER) is deployed to the Staging environment.'
+				slackSend channel: '#deloitte-devsecops-poc', message: '${JOB_NAME} (${BUILD_NUMBER}) is deployed to the Staging environment.'
 			}
 		}
 
@@ -111,7 +111,7 @@ pipeline{
 		stage ('Approve to Release'){
 			steps{
 				input "Are you sure to deploy the new release into production? Please ensure the new release does not contain any severe vulnerabilities."
-				slackSend channel: '#deloitte-devsecops-poc', message: '$JOB_NAME ($BUILD_NUMBER) is ready to launch in Production. Please kindly approve in Jenkins. $JENKINS_URL'
+				slackSend channel: '#deloitte-devsecops-poc', message: '${JOB_NAME} (${BUILD_NUMBER}) is ready to launch in Production. Please kindly approve in Jenkins. $JENKINS_URL'
 			}
 		}
 		
@@ -124,7 +124,7 @@ pipeline{
 						ssh -t ec2-user@tomcat 'docker images wanhyterr/webapp -q | xargs -r docker image rm -f'
 						ssh -t ec2-user@tomcat 'docker run -d -p 8888:8080 --rm --name webapp wanhyterr/webapp'
 					'''
-					slackSend channel: '#deloitte-devsecops-poc', message: '$JOB_NAME ($BUILD_NUMBER) has launched to the Production environment completely.'
+					slackSend channel: '#deloitte-devsecops-poc', message: '${JOB_NAME} (${BUILD_NUMBER}) has launched to the Production environment completely.'
 				}
 			}
 		}
