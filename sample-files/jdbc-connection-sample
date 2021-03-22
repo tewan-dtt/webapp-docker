@@ -1,0 +1,4 @@
+db_url      = jdbc:mysql://HOST/DATABASE
+db_driver   = com.mysql.jdbc.Driver
+db_username = USERNAME
+db_password = PASSWORD
