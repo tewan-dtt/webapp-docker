@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://feeltheajf.github.io/materialize/materialize.min.css">
+    <script src="https://feeltheajf.github.io/materialize/materialize.min.js"></script>
+
+    <title>TruffleHog3 Report</title>
+
+    <style>
+        @media only screen and (max-width: 992px) {
+            td h4 {
+                font-size: 14pt;
+                margin: 0;
+            }
+
+            td {
+                height: 40pt;
+            }
+        }
+
+        :root {
+            --pt-color: rgb(0, 32, 77);
+            --st-color: rgb(72, 117, 179);
+            --bd-color: rgba(0, 32, 77, 0.1);
+            --pb-color: rgba(0, 32, 77, 0.05);
+            --sb-color: rgba(0, 32, 77, 0.025);
+        }
+
+        [theme="dark"] {
+            --pt-color: rgb(217, 217, 217);
+            --st-color: rgb(166, 166, 166);
+            --bd-color: rgb(56, 56, 56);
+            --pb-color: rgb(36, 36, 36);
+            --sb-color: rgba(255, 255, 255, 0.025);
+        }
+
+        body {
+            color: var(--pt-color);
+            background-color: var(--pb-color);
+        }
+
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            word-break: break-word;
+            font-family: inherit;
+            margin: inherit;
+        }
+
+        a,
+        h6 {
+            color: var(--st-color);
+        }
+
+        h4,
+        h5 {
+            color: var(--pt-color)
+        }
+
+        td {
+            text-align: center;
+        }
+
+        * {
+            border-color: var(--bd-color) !important;
+        }
+
+        ul.no-bottom-border li:last-child div {
+            border-bottom: none !important;
+        }
+
+        .collapsible-header,
+        .collapsible-body {
+            background-color: var(--sb-color) !important;
+        }
+
+        .no-border {
+            border: none !important;
+        }
+
+        .transparent {
+            background-color: transparent !important;
+        }
+    </style>
+    <script>
+        function scannerHelp() {
+            window.open("https://github.com/feeltheajf/truffleHog3");
+        }
+
+        function switchTheme() {
+            var theme = document.documentElement.getAttribute("theme") == "dark" ? "light" : "dark"
+            document.documentElement.setAttribute("theme", theme);
+            localStorage.setItem("theme", theme);
+        }
+
+        if (localStorage.getItem("theme") == "dark") {
+            switchTheme();
+        }
+    </script>
+</head>
+
+<body>
+    <div class="fixed-action-btn">
+        <a class="btn-floating blue"><i class="material-icons">menu</i></a>
+        <ul>
+            <li><a class="btn-floating purple" onclick="scannerHelp()"><i class="material-icons">help</i></a></li>
+            <li><a class="btn-floating yellow" onclick="switchTheme()"><i class="material-icons">brightness_medium</i></a></li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col l2 hide-on-med-and-down">
+            <ul class="collection with-header no-border">
+                <li class="collection-header transparent">
+                    <h4>Report</h4>
+                </li>
+                <li class="collection-item no-border transparent">
+                    <a href="#High entropy">High entropy</a>
+                </li>
+                </ul>
+        </div>
+        <div class="col s12 m12 l6 offset-l1">
+            <table class="responsive-table">
+                <tr>
+                    <td><h4>Status</h4></td>
+                    <td><h4>#Issues</h4></td>
+                    <td><h4>#Entropy</h4></td>
+                    <td><h4>#Regexes</h4></td>
+                </tr>
+                <tr>
+                    <td><span class="new badge red darken-1" data-badge-caption="FAIL"></span></td>
+                    <td>15</td>
+                    <td>15</td>
+                    <td>0</td>
+                </tr>
+            </table>
+            <br>
+            <a id="High entropy"></a>
+            <h5>High entropy</h5>
+            <br>
+            <h6></h6>
+             <ul class="collapsible">
+                <li>
+                    <div class="collapsible-header transparent">
+                        Jenkinsfile
+                        <span class="new badge green darken-1" data-badge-caption="LOW"></span>
+                    </div>
+                    <div class="collapsible-body">
+<pre>
+<b>Reason:</b> High entropy
+<b>Path:</b> Jenkinsfile
+<b>Branch:</b> origin/master
+<b>Commit:</b> initial commit
+<b>Hash:</b> 8eb71f65d1c655737e66285e79663d77e8decf92
+
++			sh &#39;python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615 --engagement_id 4 --result_file nmap --username admin --scanner &#34;Nmap Scan&#34;&#39;
++			sh &#39;python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615 --engagement_id 4 --result_file nikto-output.xml --username admin&#39;
++			sh &#39;python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615 --engagement_id 4 --result_file sslyze-output.json --username admin --scanner &#34;SSL Labs Scan&#34;&#39;
++			sh &#39;python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615 --engagement_id 4 --result_file trufflehog --username admin --scanner &#34;SSL Labs Scan&#34;&#39;
++			sh &#39;python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615 --engagement_id 4 --result_file /var/lib/jenkins/OWASP-Dependency-Check/reports/dependency-check-report.xml --username admin --scanner &#34;Dependency Check Scan&#34;&#39;
+</pre>
+                <li>
+                    <div class="collapsible-header transparent">
+                        Jenkinsfile
+                        <span class="new badge green darken-1" data-badge-caption="LOW"></span>
+                    </div>
+                    <div class="collapsible-body">
+<pre>
+<b>Reason:</b> High entropy
+<b>Path:</b> Jenkinsfile
+<b>Branch:</b> origin/master
+<b>Commit:</b> Update Jenkinsfile
+<b>Hash:</b> c4c913de62e7cd1045f6a076a79aa82ac7bef6ae
+
+sh &#39;python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615 --engagement_id 4 --result_file nmap --username admin --scanner &#34;Nmap Scan&#34;&#39;
+sh &#39;python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615 --engagement_id 4 --result_file /var/lib/jenkins/OWASP-Dependency-Check/reports/dependency-check-report.xml --username admin --scanner &#34;Dependency Check Scan&#34;&#39;
++			sh &#39;python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615 --engagement_id 4 --result_file nikto-output.xml --username admin --scanner &#34;Nikto&#34;&#39;
+-			sh &#39;python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615 --engagement_id 4 --result_file nikto-output.xml --username admin&#39;
+sh &#39;python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615 --engagement_id 4 --result_file sslyze-output.json --username admin --scanner &#34;SSL Labs Scan&#34;&#39;
+</pre>
+                <li>
+                    <div class="collapsible-header transparent">
+                        Jenkinsfile
+                        <span class="new badge green darken-1" data-badge-caption="LOW"></span>
+                    </div>
+                    <div class="collapsible-body">
+<pre>
+<b>Reason:</b> High entropy
+<b>Path:</b> Jenkinsfile
+<b>Branch:</b> origin/master
+<b>Commit:</b> Update Jenkinsfile
+<b>Hash:</b> cbcb4530944071550717f4353c3a63796eba075e
+
+sh &#39;python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615 --engagement_id 4 --result_file nmap --username admin --scanner &#34;Nmap Scan&#34;&#39;
+sh &#39;python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615 --engagement_id 4 --result_file /var/lib/jenkins/OWASP-Dependency-Check/reports/dependency-check-report.xml --username admin --scanner &#34;Dependency Check Scan&#34;&#39;
++			sh &#39;python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615 --engagement_id 4 --result_file /report/nikto-output.xml --username admin --scanner &#34;Nikto&#34;&#39;
+-			sh &#39;python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615 --engagement_id 4 --result_file nikto-output.xml --username admin --scanner &#34;Nikto&#34;&#39;
+sh &#39;python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615 --engagement_id 4 --result_file sslyze-output.json --username admin --scanner &#34;SSL Labs Scan&#34;&#39;
+</pre>
+                <li>
+                    <div class="collapsible-header transparent">
+                        Jenkinsfile
+                        <span class="new badge green darken-1" data-badge-caption="LOW"></span>
+                    </div>
+                    <div class="collapsible-body">
+<pre>
+<b>Reason:</b> High entropy
+<b>Path:</b> Jenkinsfile
+<b>Branch:</b> origin/master
+<b>Commit:</b> Update Jenkinsfile
+<b>Hash:</b> 06e9d44d61953dbdb32ccf5471302be05990834a
+
++			sh &#39;python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615 --engagement_id 3 --result_file nmap.xml --username admin --scanner &#34;Nmap Scan&#34;&#39;
+-			sh &#39;python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615 --engagement_id 4 --result_file /var/lib/jenkins/OWASP-Dependency-Check/reports/dependency-check-report.xml --username admin --scanner &#34;Dependency Check Scan&#34;&#39;
++			sh &#39;python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615 --engagement_id 3 --result_file sslyze-output.json --username admin --scanner &#34;SSL Labs Scan&#34;&#39;
+-			sh &#39;python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615 --engagement_id 4 --result_file sslyze-output.json --username admin --scanner &#34;SSL Labs Scan&#34;&#39;
+-			sh &#39;python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615 --engagement_id 4 --result_file nmap --username admin --scanner &#34;Nmap Scan&#34;&#39;
+-			sh &#39;python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615 --engagement_id 4 --result_file trufflehog --username admin --scanner &#34;SSL Labs Scan&#34;&#39;
++			sh &#39;python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615 --engagement_id 3 --result_file /var/lib/jenkins/OWASP-Dependency-Check/reports/dependency-check-report.xml --username admin --scanner &#34;Dependency Check Scan&#34;&#39;
+-			sh &#39;python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615 --engagement_id 4 --result_file /report/nikto-output.xml --username admin --scanner &#34;Nikto&#34;&#39;
++			sh &#39;python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615 --engagement_id 3 --result_file trufflehog --username admin --scanner &#34;SSL Labs Scan&#34;&#39;
+</pre>
+                <li>
+                    <div class="collapsible-header transparent">
+                        Jenkinsfile
+                        <span class="new badge green darken-1" data-badge-caption="LOW"></span>
+                    </div>
+                    <div class="collapsible-body">
+<pre>
+<b>Reason:</b> High entropy
+<b>Path:</b> Jenkinsfile
+<b>Branch:</b> origin/master
+<b>Commit:</b> Update Jenkinsfile
+<b>Hash:</b> 5b95af56008acd6f791487d00a8d3f785ab06f92
+
+-			sh &#39;python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615 --engagement_id 3 --result_file nmap.xml --username admin --scanner &#34;Nmap Scan&#34;&#39;
++			sh &#39;python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615 --engagement_id 1 --result_file nmap.xml --username admin --scanner &#34;Nmap Scan&#34;&#39;
++			sh &#39;python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615 --engagement_id 1 --result_file sslyze-output.json --username admin --scanner &#34;SSL Labs Scan&#34;&#39;
++			sh &#39;python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615 --engagement_id 1 --result_file /var/lib/jenkins/OWASP-Dependency-Check/reports/dependency-check-report.xml --username admin --scanner &#34;Dependency Check Scan&#34;&#39;
+-			sh &#39;python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615 --engagement_id 3 --result_file trufflehog --username admin --scanner &#34;SSL Labs Scan&#34;&#39;
+-			sh &#39;python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615 --engagement_id 3 --result_file /var/lib/jenkins/OWASP-Dependency-Check/reports/dependency-check-report.xml --username admin --scanner &#34;Dependency Check Scan&#34;&#39;
+-			sh &#39;python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615 --engagement_id 3 --result_file sslyze-output.json --username admin --scanner &#34;SSL Labs Scan&#34;&#39;
++			sh &#39;python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615 --engagement_id 1 --result_file trufflehog --username admin --scanner &#34;SSL Labs Scan&#34;&#39;
+</pre>
+                <li>
+                    <div class="collapsible-header transparent">
+                        Jenkinsfile
+                        <span class="new badge green darken-1" data-badge-caption="LOW"></span>
+                    </div>
+                    <div class="collapsible-body">
+<pre>
+<b>Reason:</b> High entropy
+<b>Path:</b> Jenkinsfile
+<b>Branch:</b> origin/master
+<b>Commit:</b> Update Jenkinsfile
+<b>Hash:</b> eab4c0394d057c7246397817a6b79209a93c3913
+
+-			sh &#39;python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615 --engagement_id 1 --result_file sslyze-output.json --username admin --scanner &#34;SSL Labs Scan&#34;&#39;
+-			sh &#39;python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615 --engagement_id 1 --result_file nmap.xml --username admin --scanner &#34;Nmap Scan&#34;&#39;
+-			sh &#39;python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615 --engagement_id 1 --result_file trufflehog --username admin --scanner &#34;SSL Labs Scan&#34;&#39;
+-			sh &#39;python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615 --engagement_id 1 --result_file /var/lib/jenkins/OWASP-Dependency-Check/reports/dependency-check-report.xml --username admin --scanner &#34;Dependency Check Scan&#34;&#39;
+</pre>
+                <li>
+                    <div class="collapsible-header transparent">
+                        Jenkinsfile
+                        <span class="new badge green darken-1" data-badge-caption="LOW"></span>
+                    </div>
+                    <div class="collapsible-body">
+<pre>
+<b>Reason:</b> High entropy
+<b>Path:</b> Jenkinsfile
+<b>Branch:</b> origin/master
+<b>Commit:</b> Update Jenkinsfile
+<b>Hash:</b> 22777f8fbb9a68de6ccee9048633fa7b42fe3ed2
+
++		     sh &#39;&#39;&#39;python upload-results.py --host 3.81.3.77:8000 --api_key 66879c160803596f132aff025fee9a170366f615 --engagement_id 1 --result_file /root/OWASP-Dependency-Check/reports/dependency-check-report.xml --username admin --scanner &#34;Dependency Check Scan&#34; &#39;&#39;&#39;
+</pre>
+                <li>
+                    <div class="collapsible-header transparent">
+                        Jenkinsfile
+                        <span class="new badge green darken-1" data-badge-caption="LOW"></span>
+                    </div>
+                    <div class="collapsible-body">
+<pre>
+<b>Reason:</b> High entropy
+<b>Path:</b> Jenkinsfile
+<b>Branch:</b> origin/master
+<b>Commit:</b> Update Jenkinsfile
+<b>Hash:</b> 096cf6371d094ea0d81cf905f31bedf068b0587a
+
+-		     sh &#39;&#39;&#39;python upload-results.py --host 3.81.3.77:8000 --api_key 66879c160803596f132aff025fee9a170366f615 --engagement_id 1 --result_file /root/OWASP-Dependency-Check/reports/dependency-check-report.xml --username admin --scanner &#34;Dependency Check Scan&#34; &#39;&#39;&#39;
++		     sh &#39;&#39;&#39; sudo python upload-results.py --host 3.81.3.77:8000 --api_key 66879c160803596f132aff025fee9a170366f615 --engagement_id 1 --result_file /root/OWASP-Dependency-Check/reports/dependency-check-report.xml --username admin --scanner &#34;Dependency Check Scan&#34; &#39;&#39;&#39;
+</pre>
+                <li>
+                    <div class="collapsible-header transparent">
+                        Jenkinsfile
+                        <span class="new badge green darken-1" data-badge-caption="LOW"></span>
+                    </div>
+                    <div class="collapsible-body">
+<pre>
+<b>Reason:</b> High entropy
+<b>Path:</b> Jenkinsfile
+<b>Branch:</b> origin/master
+<b>Commit:</b> Update Jenkinsfile
+<b>Hash:</b> 0fbb9e135842acf80008701969c8e6a392f89ba2
+
+-		     sh &#39;&#39;&#39; sudo python upload-results.py --host 3.81.3.77:8000 --api_key 66879c160803596f132aff025fee9a170366f615 --engagement_id 1 --result_file /root/OWASP-Dependency-Check/reports/dependency-check-report.xml --username admin --scanner &#34;Dependency Check Scan&#34; &#39;&#39;&#39;
++		     sh &#39;&#39;&#39; python upload-results.py --host 3.81.3.77:8000 --api_key 66879c160803596f132aff025fee9a170366f615 --engagement_id 1 --result_file /root/OWASP-Dependency-Check/reports/dependency-check-report.xml --username admin --scanner &#34;Dependency Check Scan&#34; &#39;&#39;&#39;
+</pre>
+                <li>
+                    <div class="collapsible-header transparent">
+                        Jenkinsfile
+                        <span class="new badge green darken-1" data-badge-caption="LOW"></span>
+                    </div>
+                    <div class="collapsible-body">
+<pre>
+<b>Reason:</b> High entropy
+<b>Path:</b> Jenkinsfile
+<b>Branch:</b> origin/master
+<b>Commit:</b> Update Jenkinsfile
+<b>Hash:</b> 61de4c891af2cffa8607af89d3bc392b62f0c70b
+
++		     sh &#39;&#39;&#39; python upload-results.py --host 127.0.0.1:8000 --api_key 374d66dad8b2b10a54437d04e5fa83819a10b752 --engagement_id 1 --result_file /root/OWASP-Dependency-Check/reports/dependency-check-report.xml --username admin --scanner &#34;Dependency Check Scan&#34; &#39;&#39;&#39;
+-		     sh &#39;&#39;&#39; python upload-results.py --host 3.81.3.77:8000 --api_key 66879c160803596f132aff025fee9a170366f615 --engagement_id 1 --result_file /root/OWASP-Dependency-Check/reports/dependency-check-report.xml --username admin --scanner &#34;Dependency Check Scan&#34; &#39;&#39;&#39;
+</pre>
+                <li>
+                    <div class="collapsible-header transparent">
+                        Jenkinsfile
+                        <span class="new badge green darken-1" data-badge-caption="LOW"></span>
+                    </div>
+                    <div class="collapsible-body">
+<pre>
+<b>Reason:</b> High entropy
+<b>Path:</b> Jenkinsfile
+<b>Branch:</b> origin/master
+<b>Commit:</b> Merge branch &#39;master&#39; of https://github.com/devopssecure/webapp
+<b>Hash:</b> baabb74542c413a0d7781e306fbb8f931915b3b4
+
+-		     sh &#39;&#39;&#39; python upload-results.py --host 127.0.0.1:8000 --api_key 374d66dad8b2b10a54437d04e5fa83819a10b752 --engagement_id 1 --result_file /root/OWASP-Dependency-Check/reports/dependency-check-report.xml --username admin --scanner &#34;Dependency Check Scan&#34; &#39;&#39;&#39;
+</pre>
+                <li>
+                    <div class="collapsible-header transparent">
+                        Jenkinsfile
+                        <span class="new badge green darken-1" data-badge-caption="LOW"></span>
+                    </div>
+                    <div class="collapsible-body">
+<pre>
+<b>Reason:</b> High entropy
+<b>Path:</b> Jenkinsfile
+<b>Branch:</b> origin/master
+<b>Commit:</b> owasp bash file
+<b>Hash:</b> 937af5f616c2d230df5024cca53a5e703e2753ad
+
++		     sh &#39;&#39;&#39; python upload-results.py --host 127.0.0.1:8000 --api_key 374d66dad8b2b10a54437d04e5fa83819a10b752 --engagement_id 1 --result_file /root/OWASP-Dependency-Check/reports/dependency-check-report.xml --username admin --scanner &#34;Dependency Check Scan&#34; &#39;&#39;&#39;
+</pre>
+                <li>
+                    <div class="collapsible-header transparent">
+                        Jenkinsfile
+                        <span class="new badge green darken-1" data-badge-caption="LOW"></span>
+                    </div>
+                    <div class="collapsible-body">
+<pre>
+<b>Reason:</b> High entropy
+<b>Path:</b> Jenkinsfile
+<b>Branch:</b> origin/master
+<b>Commit:</b> Update Jenkinsfile
+<b>Hash:</b> 7fccf869208faf2dfca9f7314fe8319125b4f7ff
+
+-		     sh &#39;&#39;&#39; python upload-results.py --host 127.0.0.1:8000 --api_key 374d66dad8b2b10a54437d04e5fa83819a10b752 --engagement_id 1 --result_file /root/OWASP-Dependency-Check/reports/dependency-check-report.xml --username admin --scanner &#34;Dependency Check Scan&#34; &#39;&#39;&#39;
+</pre>
+                <li>
+                    <div class="collapsible-header transparent">
+                        upload-results.py
+                        <span class="new badge green darken-1" data-badge-caption="LOW"></span>
+                    </div>
+                    <div class="collapsible-body">
+<pre>
+<b>Reason:</b> High entropy
+<b>Path:</b> upload-results.py
+<b>Branch:</b> origin/master
+<b>Commit:</b> initial commit
+<b>Hash:</b> 8eb71f65d1c655737e66285e79663d77e8decf92
+
++	# headers = {&#39;Authorization&#39;: &#39;ApiKey dojo:3e24a3ee5af0305af20a5e6224052de3ed2f6859&#39;}
+</pre>
+                <li>
+                    <div class="collapsible-header transparent">
+                        upload-results.py
+                        <span class="new badge green darken-1" data-badge-caption="LOW"></span>
+                    </div>
+                    <div class="collapsible-body">
+<pre>
+<b>Reason:</b> High entropy
+<b>Path:</b> upload-results.py
+<b>Branch:</b> origin/master
+<b>Commit:</b> Utility Script Added
+<b>Hash:</b> 775ba1316f9bc812d42b5cdfdd9204c228a93935
+
+-	# headers = {&#39;Authorization&#39;: &#39;ApiKey dojo:3e24a3ee5af0305af20a5e6224052de3ed2f6859&#39;}
+</pre>
+                </ul>
+            </div>
+    </div>
+    <script>
+        M.AutoInit();
+        document.addEventListener("DOMContentLoaded", function() {
+            var elems = document.querySelectorAll(".fixed-action-btn");
+            var instances = M.FloatingActionButton.init(elems, {hoverEnabled: false});
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,251 @@
+- branch: origin/master
+  commit: 'initial commit
+
+    '
+  commitHash: 8eb71f65d1c655737e66285e79663d77e8decf92
+  date: '2019-03-24 10:42:02'
+  path: Jenkinsfile
+  reason: High entropy
+  stringsFound:
+  - "+\t\t\tsh 'python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615\
+    \ --engagement_id 4 --result_file sslyze-output.json --username admin --scanner\
+    \ \"SSL Labs Scan\"'"
+  - "+\t\t\tsh 'python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615\
+    \ --engagement_id 4 --result_file /var/lib/jenkins/OWASP-Dependency-Check/reports/dependency-check-report.xml\
+    \ --username admin --scanner \"Dependency Check Scan\"'"
+  - "+\t\t\tsh 'python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615\
+    \ --engagement_id 4 --result_file nmap --username admin --scanner \"Nmap Scan\"\
+    '"
+  - "+\t\t\tsh 'python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615\
+    \ --engagement_id 4 --result_file nikto-output.xml --username admin'"
+  - "+\t\t\tsh 'python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615\
+    \ --engagement_id 4 --result_file trufflehog --username admin --scanner \"SSL\
+    \ Labs Scan\"'"
+- branch: origin/master
+  commit: 'initial commit
+
+    '
+  commitHash: 8eb71f65d1c655737e66285e79663d77e8decf92
+  date: '2019-03-24 10:42:02'
+  path: upload-results.py
+  reason: High entropy
+  stringsFound:
+  - "+\t# headers = {'Authorization': 'ApiKey dojo:3e24a3ee5af0305af20a5e6224052de3ed2f6859'}"
+- branch: origin/master
+  commit: Update Jenkinsfile
+  commitHash: c4c913de62e7cd1045f6a076a79aa82ac7bef6ae
+  date: '2019-03-24 07:41:00'
+  path: Jenkinsfile
+  reason: High entropy
+  stringsFound:
+  - "-\t\t\tsh 'python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615\
+    \ --engagement_id 4 --result_file nikto-output.xml --username admin'"
+  - "+\t\t\tsh 'python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615\
+    \ --engagement_id 4 --result_file nikto-output.xml --username admin --scanner\
+    \ \"Nikto\"'"
+  - sh 'python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615
+    --engagement_id 4 --result_file nmap --username admin --scanner "Nmap Scan"'
+  - sh 'python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615
+    --engagement_id 4 --result_file sslyze-output.json --username admin --scanner
+    "SSL Labs Scan"'
+  - sh 'python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615
+    --engagement_id 4 --result_file /var/lib/jenkins/OWASP-Dependency-Check/reports/dependency-check-report.xml
+    --username admin --scanner "Dependency Check Scan"'
+- branch: origin/master
+  commit: Update Jenkinsfile
+  commitHash: cbcb4530944071550717f4353c3a63796eba075e
+  date: '2019-03-24 07:30:40'
+  path: Jenkinsfile
+  reason: High entropy
+  stringsFound:
+  - "-\t\t\tsh 'python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615\
+    \ --engagement_id 4 --result_file nikto-output.xml --username admin --scanner\
+    \ \"Nikto\"'"
+  - "+\t\t\tsh 'python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615\
+    \ --engagement_id 4 --result_file /report/nikto-output.xml --username admin --scanner\
+    \ \"Nikto\"'"
+  - sh 'python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615
+    --engagement_id 4 --result_file nmap --username admin --scanner "Nmap Scan"'
+  - sh 'python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615
+    --engagement_id 4 --result_file sslyze-output.json --username admin --scanner
+    "SSL Labs Scan"'
+  - sh 'python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615
+    --engagement_id 4 --result_file /var/lib/jenkins/OWASP-Dependency-Check/reports/dependency-check-report.xml
+    --username admin --scanner "Dependency Check Scan"'
+- branch: origin/master
+  commit: Update Jenkinsfile
+  commitHash: 06e9d44d61953dbdb32ccf5471302be05990834a
+  date: '2019-03-24 07:24:40'
+  path: Jenkinsfile
+  reason: High entropy
+  stringsFound:
+  - "+\t\t\tsh 'python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615\
+    \ --engagement_id 3 --result_file sslyze-output.json --username admin --scanner\
+    \ \"SSL Labs Scan\"'"
+  - "-\t\t\tsh 'python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615\
+    \ --engagement_id 4 --result_file /var/lib/jenkins/OWASP-Dependency-Check/reports/dependency-check-report.xml\
+    \ --username admin --scanner \"Dependency Check Scan\"'"
+  - "+\t\t\tsh 'python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615\
+    \ --engagement_id 3 --result_file nmap.xml --username admin --scanner \"Nmap Scan\"\
+    '"
+  - "+\t\t\tsh 'python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615\
+    \ --engagement_id 3 --result_file trufflehog --username admin --scanner \"SSL\
+    \ Labs Scan\"'"
+  - "-\t\t\tsh 'python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615\
+    \ --engagement_id 4 --result_file nmap --username admin --scanner \"Nmap Scan\"\
+    '"
+  - "+\t\t\tsh 'python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615\
+    \ --engagement_id 3 --result_file /var/lib/jenkins/OWASP-Dependency-Check/reports/dependency-check-report.xml\
+    \ --username admin --scanner \"Dependency Check Scan\"'"
+  - "-\t\t\tsh 'python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615\
+    \ --engagement_id 4 --result_file trufflehog --username admin --scanner \"SSL\
+    \ Labs Scan\"'"
+  - "-\t\t\tsh 'python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615\
+    \ --engagement_id 4 --result_file /report/nikto-output.xml --username admin --scanner\
+    \ \"Nikto\"'"
+  - "-\t\t\tsh 'python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615\
+    \ --engagement_id 4 --result_file sslyze-output.json --username admin --scanner\
+    \ \"SSL Labs Scan\"'"
+- branch: origin/master
+  commit: Update Jenkinsfile
+  commitHash: 5b95af56008acd6f791487d00a8d3f785ab06f92
+  date: '2019-03-24 07:15:35'
+  path: Jenkinsfile
+  reason: High entropy
+  stringsFound:
+  - "+\t\t\tsh 'python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615\
+    \ --engagement_id 1 --result_file trufflehog --username admin --scanner \"SSL\
+    \ Labs Scan\"'"
+  - "-\t\t\tsh 'python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615\
+    \ --engagement_id 3 --result_file /var/lib/jenkins/OWASP-Dependency-Check/reports/dependency-check-report.xml\
+    \ --username admin --scanner \"Dependency Check Scan\"'"
+  - "+\t\t\tsh 'python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615\
+    \ --engagement_id 1 --result_file nmap.xml --username admin --scanner \"Nmap Scan\"\
+    '"
+  - "-\t\t\tsh 'python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615\
+    \ --engagement_id 3 --result_file nmap.xml --username admin --scanner \"Nmap Scan\"\
+    '"
+  - "-\t\t\tsh 'python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615\
+    \ --engagement_id 3 --result_file trufflehog --username admin --scanner \"SSL\
+    \ Labs Scan\"'"
+  - "+\t\t\tsh 'python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615\
+    \ --engagement_id 1 --result_file /var/lib/jenkins/OWASP-Dependency-Check/reports/dependency-check-report.xml\
+    \ --username admin --scanner \"Dependency Check Scan\"'"
+  - "+\t\t\tsh 'python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615\
+    \ --engagement_id 1 --result_file sslyze-output.json --username admin --scanner\
+    \ \"SSL Labs Scan\"'"
+  - "-\t\t\tsh 'python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615\
+    \ --engagement_id 3 --result_file sslyze-output.json --username admin --scanner\
+    \ \"SSL Labs Scan\"'"
+- branch: origin/master
+  commit: Update Jenkinsfile
+  commitHash: eab4c0394d057c7246397817a6b79209a93c3913
+  date: '2019-03-24 07:01:27'
+  path: Jenkinsfile
+  reason: High entropy
+  stringsFound:
+  - "-\t\t\tsh 'python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615\
+    \ --engagement_id 1 --result_file trufflehog --username admin --scanner \"SSL\
+    \ Labs Scan\"'"
+  - "-\t\t\tsh 'python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615\
+    \ --engagement_id 1 --result_file nmap.xml --username admin --scanner \"Nmap Scan\"\
+    '"
+  - "-\t\t\tsh 'python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615\
+    \ --engagement_id 1 --result_file /var/lib/jenkins/OWASP-Dependency-Check/reports/dependency-check-report.xml\
+    \ --username admin --scanner \"Dependency Check Scan\"'"
+  - "-\t\t\tsh 'python upload-results.py --host 3.81.3.77:80 --api_key 66879c160803596f132aff025fee9a170366f615\
+    \ --engagement_id 1 --result_file sslyze-output.json --username admin --scanner\
+    \ \"SSL Labs Scan\"'"
+- branch: origin/master
+  commit: 'Utility Script Added
+
+    '
+  commitHash: 775ba1316f9bc812d42b5cdfdd9204c228a93935
+  date: '2019-03-24 06:32:01'
+  path: upload-results.py
+  reason: High entropy
+  stringsFound:
+  - "-\t# headers = {'Authorization': 'ApiKey dojo:3e24a3ee5af0305af20a5e6224052de3ed2f6859'}"
+- branch: origin/master
+  commit: Update Jenkinsfile
+  commitHash: 22777f8fbb9a68de6ccee9048633fa7b42fe3ed2
+  date: '2019-03-23 13:13:29'
+  path: Jenkinsfile
+  reason: High entropy
+  stringsFound:
+  - "+\t\t     sh '''python upload-results.py --host 3.81.3.77:8000 --api_key 66879c160803596f132aff025fee9a170366f615\
+    \ --engagement_id 1 --result_file /root/OWASP-Dependency-Check/reports/dependency-check-report.xml\
+    \ --username admin --scanner \"Dependency Check Scan\" '''"
+- branch: origin/master
+  commit: Update Jenkinsfile
+  commitHash: 096cf6371d094ea0d81cf905f31bedf068b0587a
+  date: '2019-03-23 10:08:40'
+  path: Jenkinsfile
+  reason: High entropy
+  stringsFound:
+  - "+\t\t     sh ''' sudo python upload-results.py --host 3.81.3.77:8000 --api_key\
+    \ 66879c160803596f132aff025fee9a170366f615 --engagement_id 1 --result_file /root/OWASP-Dependency-Check/reports/dependency-check-report.xml\
+    \ --username admin --scanner \"Dependency Check Scan\" '''"
+  - "-\t\t     sh '''python upload-results.py --host 3.81.3.77:8000 --api_key 66879c160803596f132aff025fee9a170366f615\
+    \ --engagement_id 1 --result_file /root/OWASP-Dependency-Check/reports/dependency-check-report.xml\
+    \ --username admin --scanner \"Dependency Check Scan\" '''"
+- branch: origin/master
+  commit: Update Jenkinsfile
+  commitHash: 0fbb9e135842acf80008701969c8e6a392f89ba2
+  date: '2019-03-23 10:08:02'
+  path: Jenkinsfile
+  reason: High entropy
+  stringsFound:
+  - "-\t\t     sh ''' sudo python upload-results.py --host 3.81.3.77:8000 --api_key\
+    \ 66879c160803596f132aff025fee9a170366f615 --engagement_id 1 --result_file /root/OWASP-Dependency-Check/reports/dependency-check-report.xml\
+    \ --username admin --scanner \"Dependency Check Scan\" '''"
+  - "+\t\t     sh ''' python upload-results.py --host 3.81.3.77:8000 --api_key 66879c160803596f132aff025fee9a170366f615\
+    \ --engagement_id 1 --result_file /root/OWASP-Dependency-Check/reports/dependency-check-report.xml\
+    \ --username admin --scanner \"Dependency Check Scan\" '''"
+- branch: origin/master
+  commit: Update Jenkinsfile
+  commitHash: 61de4c891af2cffa8607af89d3bc392b62f0c70b
+  date: '2019-03-23 10:04:38'
+  path: Jenkinsfile
+  reason: High entropy
+  stringsFound:
+  - "-\t\t     sh ''' python upload-results.py --host 3.81.3.77:8000 --api_key 66879c160803596f132aff025fee9a170366f615\
+    \ --engagement_id 1 --result_file /root/OWASP-Dependency-Check/reports/dependency-check-report.xml\
+    \ --username admin --scanner \"Dependency Check Scan\" '''"
+  - "+\t\t     sh ''' python upload-results.py --host 127.0.0.1:8000 --api_key 374d66dad8b2b10a54437d04e5fa83819a10b752\
+    \ --engagement_id 1 --result_file /root/OWASP-Dependency-Check/reports/dependency-check-report.xml\
+    \ --username admin --scanner \"Dependency Check Scan\" '''"
+- branch: origin/master
+  commit: 'Merge branch ''master'' of https://github.com/devopssecure/webapp
+
+    '
+  commitHash: baabb74542c413a0d7781e306fbb8f931915b3b4
+  date: '2019-03-16 19:04:08'
+  path: Jenkinsfile
+  reason: High entropy
+  stringsFound:
+  - "-\t\t     sh ''' python upload-results.py --host 127.0.0.1:8000 --api_key 374d66dad8b2b10a54437d04e5fa83819a10b752\
+    \ --engagement_id 1 --result_file /root/OWASP-Dependency-Check/reports/dependency-check-report.xml\
+    \ --username admin --scanner \"Dependency Check Scan\" '''"
+- branch: origin/master
+  commit: 'owasp bash file
+
+    '
+  commitHash: 937af5f616c2d230df5024cca53a5e703e2753ad
+  date: '2019-03-16 19:02:31'
+  path: Jenkinsfile
+  reason: High entropy
+  stringsFound:
+  - "+\t\t     sh ''' python upload-results.py --host 127.0.0.1:8000 --api_key 374d66dad8b2b10a54437d04e5fa83819a10b752\
+    \ --engagement_id 1 --result_file /root/OWASP-Dependency-Check/reports/dependency-check-report.xml\
+    \ --username admin --scanner \"Dependency Check Scan\" '''"
+- branch: origin/master
+  commit: Update Jenkinsfile
+  commitHash: 7fccf869208faf2dfca9f7314fe8319125b4f7ff
+  date: '2019-03-13 13:14:13'
+  path: Jenkinsfile
+  reason: High entropy
+  stringsFound:
+  - "-\t\t     sh ''' python upload-results.py --host 127.0.0.1:8000 --api_key 374d66dad8b2b10a54437d04e5fa83819a10b752\
+    \ --engagement_id 1 --result_file /root/OWASP-Dependency-Check/reports/dependency-check-report.xml\
+    \ --username admin --scanner \"Dependency Check Scan\" '''"
