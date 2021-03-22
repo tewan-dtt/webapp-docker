@@ -13,7 +13,7 @@ pipeline{
                     			echo "PATH = ${PATH}"
                     			echo "M2_HOME = ${M2_HOME}"
             			''' 
-				slackSend channel: "#deloitte-devsecops-poc", "color": "#2eb886", message: "${env.JOB_NAME} ${env.BUILD_NUMBER} - Jenkins Pipeline Started - (<${env.BUILD_URL}|Jenkins Page>)"
+				slackSend channel: "#deloitte-devsecops-poc", "color": "#2eb886", message: "${env.JOB_NAME} #${env.BUILD_NUMBER} - Jenkins Pipeline Started - (<${env.BUILD_URL}|Jenkins Page>)"
       			}
 		}
 		
@@ -43,7 +43,7 @@ pipeline{
 				script{
 					dockerImage.run("-p 8888:8080 --rm --name webapp")
 				}
-				slackSend channel: "#deloitte-devsecops-poc", "color": "#2eb886", message: "${env.JOB_NAME} ${env.BUILD_NUMBER} - Deployed to Staging - (<http://10.59.0.209:8888/webapp| Webapp JSP (Staging)>)"
+				slackSend channel: "#deloitte-devsecops-poc", "color": "#2eb886", message: "${env.JOB_NAME} #${env.BUILD_NUMBER} - Deployed to Staging - (<http://10.59.0.209:8888/webapp|Webapp JSP (Staging)>)"
 			}
 		}
 
@@ -111,14 +111,14 @@ pipeline{
 		
 		stage ('Approval from Security Champion'){
 			steps{
-				slackSend channel: "#deloitte-devsecops-poc","color": "#ECB22E", message: "${env.JOB_NAME} ${env.BUILD_NUMBER} - Ready to proceed in Production - (<http://10.59.0.209:8080/blue/organizations/jenkins/${env.JOB_NAME}/detail/${env.JOB_NAME}/${env.BUILD_NUMBER}/pipeline|Open>). Please kindly review the security testing result then approve in Jenkins."
+				slackSend channel: "#deloitte-devsecops-poc","color": "#ECB22E", message: "${env.JOB_NAME} #${env.BUILD_NUMBER} - Ready to perform Security Review \n(<http://10.59.0.209:8080/blue/organizations/jenkins/${env.JOB_NAME}/detail/${env.JOB_NAME}/${env.BUILD_NUMBER}/pipeline|Jenkins Page>). Please kindly review the security testing result then approve in Jenkins."
 				input message: "Please proceed if the new release doesn't contain any severe vulnerabilities.", submitter: "Security-Champion"
 			}
 		}
 		
 		stage ('Approve to Release'){
 			steps{
-				slackSend channel: "#deloitte-devsecops-poc","color": "#ECB22E", message: "${env.JOB_NAME} ${env.BUILD_NUMBER} - Ready to proceed in Production - (<http://10.59.0.209:8080/blue/organizations/jenkins/${env.JOB_NAME}/detail/${env.JOB_NAME}/${env.BUILD_NUMBER}/pipeline|Open>). A new release is ready to launch in Production! Please kindly approve in Jenkins."
+				slackSend channel: "#deloitte-devsecops-poc","color": "#ECB22E", message: "${env.JOB_NAME} #${env.BUILD_NUMBER} - Ready to proceed in Production - (<http://10.59.0.209:8080/blue/organizations/jenkins/${env.JOB_NAME}/detail/${env.JOB_NAME}/${env.BUILD_NUMBER}/pipeline|Jenkins Page>). A new release is ready to launch in Production! Please kindly approve in Jenkins."
 				input message: "Are you sure to deploy the new release into production?", submitter: "Squad-Owner"
 			}
 		}
@@ -145,10 +145,13 @@ pipeline{
 			 * 3. aborted, success, unstable or failure - depending on status
 			 */
 			aborted {
-			    slackSend channel: "#deloitte-devsecops-poc","color": "#E01E5A", message: "${env.JOB_NAME} ${env.BUILD_NUMBER} - ${currentBuild.currentResult} - (<${env.BUILD_URL}| Jenkins Page>)."
+			    slackSend channel: "#deloitte-devsecops-poc","color": "#E01E5A", message: "${env.JOB_NAME} #${env.BUILD_NUMBER} - The Pipeline is Aborted - (<http://10.59.0.209:8080/blue/organizations/jenkins/${env.JOB_NAME}/detail/${env.JOB_NAME}/${env.BUILD_NUMBER}/pipeline|Jenkins Page>)."
+			}
+			failure {
+			    slackSend channel: "#deloitte-devsecops-poc","color": "#E01E5A", message: "${env.JOB_NAME} #${env.BUILD_NUMBER} - The Pipeline is Failed - (<http://10.59.0.209:8080/blue/organizations/jenkins/${env.JOB_NAME}/detail/${env.JOB_NAME}/${env.BUILD_NUMBER}/pipeline|Jenkins Page>)."
 			}
 			success {
-			    slackSend channel: "#deloitte-devsecops-poc","color": "#2eb886", message: "${env.JOB_NAME} ${env.BUILD_NUMBER} - Deployed in Production Successfully - (<http://10.59.0.190:8888/webapp|Open>)."
+			    slackSend channel: "#deloitte-devsecops-poc","color": "#2eb886", message: "${env.JOB_NAME} #${env.BUILD_NUMBER} - Deployed in Production Successfully - (<http://10.59.0.190:8888/webapp|Webapp JSP (Production)>)."
 			}
     		}
 }
