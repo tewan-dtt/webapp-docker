@@ -93,11 +93,10 @@ pipeline{
 
 		stage ('Archive Artifact'){
 			steps{
-				archiveArtifacts 'target/*.war' || true
-				archiveArtifacts 'trufflehog-result.yaml' || true
-				archiveArtifacts 'trufflehog-report.html' || true
-				archiveArtifacts '*.fpr' || true
-				archiveArtifacts 'prisma-cloud-scan-results.json' || true
+				archiveArtifacts 'target/*.war'
+				archiveArtifacts 'trufflehog-result.yaml'
+				archiveArtifacts 'trufflehog-report.html'
+				archiveArtifacts 'prisma-cloud-scan-results.json'
 				publishHTML (target: [
 				      allowMissing: false,
 				      alwaysLinkToLastBuild: false,
