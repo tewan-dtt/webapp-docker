@@ -27,7 +27,7 @@ pipeline{
 			environment {registryCredential = 'docker-hub'}
 			steps{
 				script{
-					dockerImage = docker.build("wanhyterr/webapp")
+					dockerImage = docker.build("wanhyterr/webapp:latest")
 					docker.withRegistry( '', registryCredential ) {
 						dockerImage.push("$BUILD_NUMBER")
 						dockerImage.push('latest')
