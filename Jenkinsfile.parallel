@@ -93,11 +93,11 @@ pipeline{
 
 		stage ('Archive Artifact'){
 			steps{
-				archiveArtifacts 'target/*.war'
-				archiveArtifacts 'trufflehog-result.yaml'
-				archiveArtifacts 'trufflehog-report.html'
-				archiveArtifacts '*.fpr'
-				archiveArtifacts 'prisma-cloud-scan-results.json'
+				archiveArtifacts 'target/*.war' || true
+				archiveArtifacts 'trufflehog-result.yaml' || true
+				archiveArtifacts 'trufflehog-report.html' || true
+				archiveArtifacts '*.fpr' || true
+				archiveArtifacts 'prisma-cloud-scan-results.json' || true
 				publishHTML (target: [
 				      allowMissing: false,
 				      alwaysLinkToLastBuild: false,
@@ -145,13 +145,13 @@ pipeline{
 			 * 3. aborted, success, unstable or failure - depending on status
 			 */
 			aborted {
-			    slackSend channel: "#deloitte-devsecops-poc","color": "#E01E5A", message: "${env.JOB_NAME} #${env.BUILD_NUMBER} - The Pipeline is Aborted - (<http://10.59.0.209:8080/blue/organizations/jenkins/${env.JOB_NAME}/detail/${env.JOB_NAME}/${env.BUILD_NUMBER}/pipeline|Jenkins Page>)."
+			    slackSend channel: "#deloitte-devsecops-poc","color": "#E01E5A", message: "${env.JOB_NAME} #${env.BUILD_NUMBER} - The Pipeline is Aborted - <http://10.59.0.209:8080/blue/organizations/jenkins/${env.JOB_NAME}/detail/${env.JOB_NAME}/${env.BUILD_NUMBER}/pipeline|Jenkins Page>."
 			}
 			failure {
-			    slackSend channel: "#deloitte-devsecops-poc","color": "#E01E5A", message: "${env.JOB_NAME} #${env.BUILD_NUMBER} - The Pipeline is Failed - (<http://10.59.0.209:8080/blue/organizations/jenkins/${env.JOB_NAME}/detail/${env.JOB_NAME}/${env.BUILD_NUMBER}/pipeline|Jenkins Page>)."
+			    slackSend channel: "#deloitte-devsecops-poc","color": "#E01E5A", message: "${env.JOB_NAME} #${env.BUILD_NUMBER} - The Pipeline is Failed - <http://10.59.0.209:8080/blue/organizations/jenkins/${env.JOB_NAME}/detail/${env.JOB_NAME}/${env.BUILD_NUMBER}/pipeline|Jenkins Page>."
 			}
 			success {
-			    slackSend channel: "#deloitte-devsecops-poc","color": "#2eb886", message: "${env.JOB_NAME} #${env.BUILD_NUMBER} - Deployed in Production Successfully - (<http://10.59.0.190:8888/webapp|Webapp JSP in Production>)."
+			    slackSend channel: "#deloitte-devsecops-poc","color": "#2eb886", message: "${env.JOB_NAME} #${env.BUILD_NUMBER} - Deployed in Production Successfully - <http://10.59.0.190:8888/webapp|Webapp JSP in Production>."
 			}
     		}
 }
