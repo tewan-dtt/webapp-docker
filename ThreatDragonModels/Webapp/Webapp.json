@@ -2,7 +2,7 @@
   "summary": {
     "title": "Webapp",
     "owner": "Terrence",
-    "description": "This is a simple web app using standard HTTP service to transfer and process banking account information. It will receive inquiry instruction from upstream system and read account information from downstream system."
+    "description": "This is a simple web app using standard HTTP service to display company information in a static jsp website."
   },
   "detail": {
     "contributors": [],
